@@ -1,0 +1,43 @@
+﻿* {
+	box-sizing: border-box;
+}
+body, h1 {
+	margin: 0;
+	padding: 0;
+}
+.header {
+	height: 100px;
+	padding: 20px;
+	background: #ccc;
+	color: #fff;
+	font-family: Verdana;
+	line-height: 60px;
+}
+.main {
+	text-align: center;
+	padding: 20px;
+}
+.greenLink {
+	display: inline-block;
+	padding: 20px;
+	margin: 20px;
+	font: bold 18px Verdana;
+	text-decoration: none;
+	color: #fff;
+	background: green;
+	border: none;
+	cursor: pointer;
+}
+
+/*forms*/
+input {
+	width: 100%;
+}
+.formGroup {
+	margin: 10px 0;
+	text-align: left;
+}
+#registerForm, #loginForm {
+	width: 200px;
+	margin: 0  auto;
+}
