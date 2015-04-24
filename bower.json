@@ -1,0 +1,20 @@
+{
+  "name": "application",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ritualcode/application",
+  "authors": [
+    "ritualcode <ritualcode@gmail.com>"
+  ],
+  "dependencies": {
+    "jquery":"latest",
+    "bootstrap":"latest"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
