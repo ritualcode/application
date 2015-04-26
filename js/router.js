@@ -1,7 +1,10 @@
 ﻿var router = {
 	routes: {
 		register: {
-			html: "register.html"
+			html: "register.html",
+			afterLoad: function() {
+				register.init(validationOptions);
+			}
 		},
 		login: {
 			html: "login.html"
@@ -12,7 +15,7 @@
 		var url = location.hash.slice(1);
 		if (url != "") {
 			var rout = router.routes[url];
-			$container.load(rout.html);
+			$container.load(rout.html, null, rout.afterLoad);
 		} else {
 			$container.load("start.html");
 		}
