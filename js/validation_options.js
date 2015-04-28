@@ -1,4 +1,4 @@
-﻿var validationOptions = {
+﻿var RegisterValidationOptions = {
 	nameOptions: {
 	},
 	emailOptions: {
@@ -74,6 +74,51 @@
 					return val == $("#password").val();
 				},
 				message : "Your password doesn't match"
+			}
+		},
+		showErrors: "first",
+		styles: {
+			input: {},
+			message: {
+				"color": "red"
+			}
+		},
+		hideErrorsOnEvent: "keydown"
+	}
+}
+
+var LoginValidationOptions = {
+	emailOptions: {
+		validation: {
+			required: {
+				value   : true,
+				message : "E-mail is required"
+			},
+			pattern: {
+				value   : /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i,
+				message : "Your e-mail is not valid"
+			},
+			exists: {
+				value: function(){},
+			}
+		},
+		showErrors: "first",
+		styles: {
+			input: {},
+			message: {
+				"color": "red"
+			}
+		},
+		hideErrorsOnEvent: "keydown"
+	},
+	passwordOptions: {
+		validation: {
+			required: {
+				value   : true,
+				message : "Password is required"
+			},
+			exists: {
+				value: function(){},
 			}
 		},
 		showErrors: "first",

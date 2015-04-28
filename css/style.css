@@ -10,6 +10,14 @@ body, h1 {
 	background: #ccc;
 	color: #fff;
 }
+.navigation {
+	padding-top: 20px;
+	text-align: center;
+}
+.navigation li {
+	display: inline-block;
+	float: none;
+}
 .main {
 	text-align: center;
 	padding: 20px;
@@ -23,4 +31,9 @@ body, h1 {
 }
 .form-group {
 	text-align: left;
+}
+
+/*Bootstrap*/
+.nav>li>a:focus {
+	background: inherit;
 }
