@@ -1,14 +1,5 @@
 ﻿var router = {
-	routes: {
-		register: {
-			html: "register.html",
-			controller: ""
-		},
-		login: {
-			html: "login.html",
-			controller: ""
-		}
-	},
+	routes: {},
 	run: function() {
 		var $container = $(".main");
 		var url = location.hash.slice(1);
@@ -16,8 +7,8 @@
 		if (url != "") {
 			var rout = router.routes[url];
 			$container.load(rout.html, null, function(){
-				$(window).trigger(url + ".ready");
-			});
+    			rout.controller();
+  			});
 			$link
 				.parent().addClass("active")
 				.siblings().removeClass("active");
@@ -31,7 +22,8 @@
 		$(window).on("hashchange", router.run);
 		window.addEventListener("load", router.run);
 	},
-	init: function () {
+	init: function (routes) {
+		this.routes = routes;
 		this.bindListeners();
 	}
 }

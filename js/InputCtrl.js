@@ -1,9 +1,4 @@
-﻿var register = {
-	getDomElements: function() {
-		this.$form            = $("#registerForm");
-		this.$inputs          = $("#registerForm input");
-		this.$registerBtn     = $("#registerBtn");
-	},
+﻿var InputCtrl = {
 	getId: function(inputEl) {
 		return inputEl.id;
 	},
@@ -106,7 +101,7 @@
 			}.bind(this));
 		}.bind(this));
 
-		this.$registerBtn.on("click", function() {
+		this.$btn.on("click", function() {
 			this.$form.trigger("submit");
 		}.bind(this));
 	},
@@ -114,26 +109,5 @@
 		$(inputEl).on(options.hideErrorsOnEvent, function() {
 			this.hideErrorMessages(inputEl, options);
 		}.bind(this));
-	},
-	init: function(options) {
-		this.getDomElements();
-		this.$inputs.each(function(i, el) {
-			var key = Object.keys(options)[i];
-			if (options[key].validation &&
-				options[key].validation.required &&
-				options[key].validation.required.value) {
-				this.markAsRequired(el);
-			}
-			if (options[key].styles &&
-				options[key].styles.input &&
-				options[key].styles.message) {
-				this.stylize(el, options[key]);
-			}
-			if (options[key].hideErrorsOnEvent) {
-				this.bindHideErrors(el, options[key]);
-			}
-		}.bind(this));
-		
-		this.bindSubmit(options);
 	}
 }
