@@ -7,7 +7,9 @@
   ],
   "dependencies": {
     "jquery":"latest",
-    "bootstrap":"latest"
+    "bootstrap":"latest",
+    "Faker":"latest",
+    "bootbox":"latest"
   },
   "license": "MIT",
   "ignore": [

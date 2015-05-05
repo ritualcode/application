@@ -1,5 +1,11 @@
-﻿var RegisterValidationOptions = {
+var RegisterValidationOptions = {
 	nameOptions: {
+		validation: {
+			required: {
+				value   : true,
+				message : "Name is required"
+			}
+		}
 	},
 	emailOptions: {
 		validation: {
@@ -46,12 +52,12 @@
 				message : "Your password is too long"
 			},
 			minlength: {
-				value   : 4,
+				value   : 6,
 				message : "Your password is too short"
 			},
 			pattern: {
-				value : /^[a-zA-Z0-9_]*$/,
-				message: "Your password is not valid"
+				value : /^(?=.*\d)[a-zA-Z0-9_]*$/,
+				message: "Your password is not valid: at least 1 digit"
 			}
 		},
 		showErrors: "first",
@@ -99,7 +105,17 @@ var LoginValidationOptions = {
 				message : "Your e-mail is not valid"
 			},
 			exists: {
-				value: function(){},
+				value: function(val){
+					var users = JSON.parse(localStorage.users);
+					for(var i = 0; i < users.length; i++) {
+						if(users[i].email == val) {
+							return true;
+						} else {
+							continue;
+						}
+					}
+				},
+				message: "E-mail is not found"
 			}
 		},
 		showErrors: "first",
@@ -118,7 +134,17 @@ var LoginValidationOptions = {
 				message : "Password is required"
 			},
 			exists: {
-				value: function(){},
+				value: function(val){
+					var users = JSON.parse(localStorage.users);
+					for(var i = 0; i < users.length; i++) {
+						if(users[i].password == val) {
+							return true;
+						} else {
+							continue;
+						}
+					}
+				},
+				message: "Password is not found",
 			}
 		},
 		showErrors: "first",

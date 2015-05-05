@@ -82,6 +82,7 @@
 		this.hideErrorMessages(inputEl, options);
 		Validator.run(inputId, options.validation, $(inputEl).val() );
 		if(Object.keys(Validator._errors[inputId]).length == 0) {
+			delete Validator._errors[inputId];
 			this.stylizeSucces(inputEl);
 		} else {
 			if(options.showErrors) {
@@ -109,5 +110,26 @@
 		$(inputEl).on(options.hideErrorsOnEvent, function() {
 			this.hideErrorMessages(inputEl, options);
 		}.bind(this));
+	},
+	init: function(options) {
+		this.getDomElements();
+		this.$inputs.each(function(i, el) {
+			var key = Object.keys(options)[i];
+			if (options[key].validation &&
+				options[key].validation.required &&
+				options[key].validation.required.value) {
+				this.markAsRequired(el);
+			}
+			if (options[key].styles &&
+				options[key].styles.input &&
+				options[key].styles.message) {
+				this.stylize(el, options[key]);
+			}
+			if (options[key].hideErrorsOnEvent) {
+				this.bindHideErrors(el, options[key]);
+			}
+		}.bind(this));
+		
+		this.bindSubmit(options);
 	}
 }

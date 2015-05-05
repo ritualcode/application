@@ -1,29 +1,39 @@
 ﻿var LoginCtrl = Object.create(InputCtrl);
 
 LoginCtrl.getDomElements = function() {
-		this.$form      = $("#loginForm");
-		this.$inputs    = $("#loginForm input");
-		this.$btn  = $("#loginBtn");
-}
+	this.$form      = $("#loginForm");
+	this.$inputs    = $("#loginForm input");
+	this.$btn  = $("#loginBtn");
+};
+LoginCtrl.changeLastLogin = function() {
+	var users = JSON.parse(localStorage.users);
+	for(var i = 0; i < users.length; i++) {
+		if(users[i].email == $("#email").val()) {
+			users[i].lastLogin = Date.now();
+			localStorage.setItem("authToken", users[i].token);
+		}
+	}
+	var result = JSON.stringify(users);
+	localStorage.setItem("users", result);
+},
+LoginCtrl.bindSubmit = function(options) {
+	this.$btn.on("click", function(e) {
+		e.preventDefault();
+		this.$form.trigger("submit");
+	}.bind(this));
 
-LoginCtrl.init = function(options) {
-	this.getDomElements();
-	this.$inputs.each(function(i, el) {
-		var key = Object.keys(options)[i];
-		if (options[key].validation &&
-			options[key].validation.required &&
-			options[key].validation.required.value) {
-			this.markAsRequired(el);
-		}
-		if (options[key].styles &&
-			options[key].styles.input &&
-			options[key].styles.message) {
-			this.stylize(el, options[key]);
-		}
-		if (options[key].hideErrorsOnEvent) {
-			this.bindHideErrors(el, options[key]);
+	this.$form.on("submit", function(e) {
+		e.preventDefault();
+		this.$inputs.each(function(i, el) {
+			var key = Object.keys(options)[i];
+			if(options[key].validation){
+				this.validate(el, options[key]);
+			}
+		}.bind(this));
+		
+		if(Object.keys(Validator._errors).length == 0) {
+			this.changeLastLogin();
+			location.hash = "#user";
 		}
 	}.bind(this));
-	
-	this.bindSubmit(options);
-}
+};
