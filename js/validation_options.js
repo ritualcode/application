@@ -24,13 +24,13 @@ var RegisterValidationOptions = {
 			pattern: {
 				value   : /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i,
 				message : "Your e-mail is not valid"
-			},
-			justYahoo: {
-				value   : function(val) {
-					return /@yahoo.com\s*$/.test(val);
-				},
-				message : "Your domain is not yahoo.com"
 			}
+			// justYahoo: {
+			// 	value   : function(val) {
+			// 		return /@yahoo.com\s*$/.test(val);
+			// 	},
+			// 	message : "Your domain is not yahoo.com"
+			// }
 		},
 		showErrors: "first",
 		styles: {
