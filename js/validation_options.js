@@ -4,8 +4,16 @@ var RegisterValidationOptions = {
 			required: {
 				value   : true,
 				message : "Name is required"
+			},
+		},
+		showErrors: "first",
+		styles: {
+			input: {},
+			message: {
+				"color": "red"
 			}
-		}
+		},
+		hideErrorsOnEvent: "keydown"
 	},
 	emailOptions: {
 		validation: {
@@ -133,19 +141,6 @@ var LoginValidationOptions = {
 				value   : true,
 				message : "Password is required"
 			},
-			exists: {
-				value: function(val){
-					var users = JSON.parse(localStorage.users);
-					for(var i = 0; i < users.length; i++) {
-						if(users[i].password == val) {
-							return true;
-						} else {
-							continue;
-						}
-					}
-				},
-				message: "Password is not found",
-			}
 		},
 		showErrors: "first",
 		styles: {

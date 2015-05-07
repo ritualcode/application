@@ -1,14 +1,25 @@
-﻿* {
+* {
 	box-sizing: border-box;
 }
 body, h1 {
 	margin: 0;
 	padding: 0;
 }
+.clearfix:after {
+	content "";
+	display: table;
+	clear: both;
+}
 .header {
 	padding: 20px;
 	background: #ccc;
 	color: #fff;
+}
+.header h1 {
+	float: left;
+}
+.initDB {
+	float: right;
 }
 .navigation {
 	padding-top: 20px;
@@ -31,6 +42,9 @@ body, h1 {
 }
 .form-group {
 	text-align: left;
+}
+.logout {
+	margin:10px;
 }
 
 /*Bootstrap*/

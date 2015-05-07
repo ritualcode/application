@@ -23,7 +23,7 @@ var router = {
 	},
 	bindListeners: function() {
 		$(window).on("hashchange", router.run);
-		// window.addEventListener("load", router.run);
+		window.addEventListener("load", router.run);
 	},
 	init: function (routes) {
 		this.routes = routes;

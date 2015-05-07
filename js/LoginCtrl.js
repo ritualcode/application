@@ -1,9 +1,9 @@
 ﻿var LoginCtrl = Object.create(InputCtrl);
 
 LoginCtrl.getDomElements = function() {
-	this.$form      = $("#loginForm");
-	this.$inputs    = $("#loginForm input");
-	this.$btn  = $("#loginBtn");
+	this.$form    = $("#loginForm");
+	this.$inputs  = $("#loginForm input");
+	this.$btn     = $("#loginBtn");
 };
 LoginCtrl.changeLastLogin = function() {
 	var users = JSON.parse(localStorage.users);
@@ -16,6 +16,17 @@ LoginCtrl.changeLastLogin = function() {
 	var result = JSON.stringify(users);
 	localStorage.setItem("users", result);
 },
+LoginCtrl.IsEmailAndPasseword = function() {
+	var users = JSON.parse(localStorage.users);
+	for(var i = 0; i < users.length; i++) {
+		if(users[i].email == $("#email").val() &&
+		   users[i].password == $("#password").val() ) {
+		   return true
+		} else {
+			continue
+		}
+	}
+}
 LoginCtrl.bindSubmit = function(options) {
 	this.$btn.on("click", function(e) {
 		e.preventDefault();
@@ -31,9 +42,10 @@ LoginCtrl.bindSubmit = function(options) {
 			}
 		}.bind(this));
 		
-		if(Object.keys(Validator._errors).length == 0) {
-			this.changeLastLogin();
-			location.hash = "#user";
+		if(Object.keys(Validator._errors).length == 0 &&
+		   this.IsEmailAndPasseword() ) {
+			  this.changeLastLogin();
+			  location.hash = "#user";
 		}
 	}.bind(this));
 };

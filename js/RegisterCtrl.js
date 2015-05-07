@@ -14,7 +14,7 @@ RegisterCtrl.saveNewUser = function() {
 		username: $("#name").val(),
 		password: $("#password").val(),
 		email: $("#email").val(),
-		token: Math.random(),
+		token: faker.internet.password(),
 		lastLogin: Date.now()
 	}
 	users.push(user);

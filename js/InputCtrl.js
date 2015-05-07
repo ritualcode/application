@@ -91,21 +91,6 @@
 			this.stylizeError(inputEl);
 		}
 	},
-	bindSubmit: function(options) {
-		this.$form.on("submit", function(e) {
-			e.preventDefault();
-			this.$inputs.each(function(i, el) {
-				var key = Object.keys(options)[i];
-				if(options[key].validation){
-					this.validate(el, options[key]);
-				}
-			}.bind(this));
-		}.bind(this));
-
-		this.$btn.on("click", function() {
-			this.$form.trigger("submit");
-		}.bind(this));
-	},
 	bindHideErrors: function(inputEl, options) {
 		$(inputEl).on(options.hideErrorsOnEvent, function() {
 			this.hideErrorMessages(inputEl, options);
