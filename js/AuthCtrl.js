@@ -37,6 +37,7 @@ var AuthCtrl = {
 		if ( this._isUserExists() && this._isRecentLogin() ) {
 			location.hash = "#user";
 			this._changeUserLastLogin();
+			$(window).trigger("loginSuccess");
 		}
 	}
 }

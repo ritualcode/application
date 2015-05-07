@@ -112,19 +112,24 @@ var LoginValidationOptions = {
 				value   : /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i,
 				message : "Your e-mail is not valid"
 			},
-			exists: {
-				value: function(val){
-					var users = JSON.parse(localStorage.users);
-					for(var i = 0; i < users.length; i++) {
-						if(users[i].email == val) {
-							return true;
-						} else {
-							continue;
-						}
-					}
-				},
-				message: "E-mail is not found"
-			}
+			// exists: {
+			// 	value: function(val){
+			// 		if(localStorage.users) {
+			// 			var users = JSON.parse(localStorage.users);
+			// 			for(var i = 0; i < users.length; i++) {
+			// 				if(users[i].email == val) {
+			// 					return true;
+			// 				} else {
+			// 					continue;
+			// 				}
+			// 			}
+			// 			return false;
+			// 		} else {
+			// 			return false;
+			// 		}
+			// 	},
+			// 	message: "E-mail is not found"
+			// }
 		},
 		showErrors: "first",
 		styles: {

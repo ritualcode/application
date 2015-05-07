@@ -15,7 +15,6 @@ var router = {
 	    				rout.controller();
 	    			}
 	    		});
-
 		} else {
 			$container.empty();
 			location.hash = ""
@@ -50,6 +49,7 @@ var myRoutes = {
 		html: "user.html",
 		controller: function() {
 			modalLogout.init();
+			$(".loginLink").parent().hide();
 		},
 		access: function() {
 			return AuthCtrl._isUserExists() && AuthCtrl._isRecentLogin()

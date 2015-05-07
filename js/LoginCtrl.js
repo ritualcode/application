@@ -17,16 +17,23 @@ LoginCtrl.changeLastLogin = function() {
 	localStorage.setItem("users", result);
 },
 LoginCtrl.IsEmailAndPasseword = function() {
-	var users = JSON.parse(localStorage.users);
-	for(var i = 0; i < users.length; i++) {
-		if(users[i].email == $("#email").val() &&
-		   users[i].password == $("#password").val() ) {
-		   return true
-		} else {
-			continue
+	if(localStorage.users) {
+		var users = JSON.parse(localStorage.users);
+		for(var i = 0; i < users.length; i++) {
+			if(users[i].email == $("#email").val() &&
+			   users[i].password == $("#password").val() ) {
+			   return true
+			} else {
+				continue
+			}
 		}
+		$(".password-message").text("Invalid e-mail of password");
+		return false;
+	} else {
+		$(".password-message").text("User is not found");
 	}
-}
+
+},
 LoginCtrl.bindSubmit = function(options) {
 	this.$btn.on("click", function(e) {
 		e.preventDefault();
@@ -46,6 +53,7 @@ LoginCtrl.bindSubmit = function(options) {
 		   this.IsEmailAndPasseword() ) {
 			  this.changeLastLogin();
 			  location.hash = "#user";
+			  $(window).trigger("loginSuccess");
 		}
 	}.bind(this));
 };

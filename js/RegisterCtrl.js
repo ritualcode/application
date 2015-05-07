@@ -40,6 +40,7 @@ RegisterCtrl.bindSubmit = function(options) {
 		if(Object.keys(Validator._errors).length == 0) {
 			this.saveNewUser();
 			location.hash = "#user";
+			$(window).trigger("loginSuccess");
 		}
 	}.bind(this));
 };

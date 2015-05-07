@@ -1,6 +1,6 @@
 var modalLogout = {
 	getDomElements:function(){
-		this.$btn = $(".logout");
+		this.$btn = $(".logoutLink");
 	},
 	bindListeners: function() {
 		this.$btn.on("click", function() {
@@ -14,6 +14,7 @@ var modalLogout = {
 			      callback: function() {
 			       	localStorage.removeItem("authToken");
 			        location.hash = "";
+			        $(window).trigger("logoutSuccess");
 			      }
 			    },
 			    danger: {
