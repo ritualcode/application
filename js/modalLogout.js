@@ -1,9 +1,10 @@
 var modalLogout = {
-	getDomElements:function(){
-		this.$btn = $(".logoutLink");
-	},
+	// getDomElements:function(){
+	// 	this.$btn = $(".logoutBtn");
+	// },
 	bindListeners: function() {
-		this.$btn.on("click", function() {
+		$(".header").on("click", ".logoutBtn", function() {
+			console.log("button was clicked");
 			bootbox.dialog({
 			  message: "Are you sure you want to logout?",
 			  title: "Logout",
@@ -13,7 +14,7 @@ var modalLogout = {
 			      className: "btn-success",
 			      callback: function() {
 			       	localStorage.removeItem("authToken");
-			        location.hash = "";
+			        location.hash = "#login";
 			        $(window).trigger("logoutSuccess");
 			      }
 			    },
@@ -28,7 +29,7 @@ var modalLogout = {
 		});
 	},
 	init: function(){
-		this.getDomElements();
+		// this.getDomElements();
 		this.bindListeners();
 	}
 }

@@ -29,6 +29,13 @@ body, h1 {
 	display: inline-block;
 	float: none;
 }
+.navigation li a:hover {
+	cursor: pointer;
+}
+.nav>li>a:focus {
+	background: inherit;
+}
+
 .main {
 	text-align: center;
 	padding: 20px;
@@ -43,11 +50,10 @@ body, h1 {
 .form-group {
 	text-align: left;
 }
-.logout {
-	margin:10px;
+
+/*Tables*/
+.profileTable {
+	width: 400px;
+	margin: 30px  auto;
 }
 
-/*Bootstrap*/
-.nav>li>a:focus {
-	background: inherit;
-}

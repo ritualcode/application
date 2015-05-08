@@ -35,7 +35,7 @@ var AuthCtrl = {
 	},
 	init: function() {
 		if ( this._isUserExists() && this._isRecentLogin() ) {
-			location.hash = "#user";
+			location.hash = "#profile";
 			this._changeUserLastLogin();
 			$(window).trigger("loginSuccess");
 		}

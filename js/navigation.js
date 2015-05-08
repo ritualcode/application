@@ -1,36 +1,70 @@
 var navigation = {
+	getDomElements: function() {
+		this.$regLink = $(".registerLink").parent();
+		this.$logLink = $(".loginLink").parent();
+	},
+	hideStartTabs: function() {
+		this.$regLink.hide();
+		this.$logLink.hide();
+	},
+	showStartTabs: function() {
+		this.$regLink.show();
+		this.$logLink.show();
+	},
+	createLoginBtn: function() {
+		this.$logoutBtn = $("<button class='logoutBtn btn btn-sm btn-primary'>Logout</button>");
+		this.$logoutBtn.css({"float":"right", "margin-right":"10px"});
+		$(".header").append(this.$logoutBtn);
+	},
+	removeLoginBtn: function() {
+		this.$logoutBtn.remove();
+	},
+	createUserTabs: function() {
+		this.$userLink = $("<li><a href='#profile' class='profileLink'>Profile</a></li>");
+		this.$profileLink = $("<li><a href='#users' class='usersLink'>Users</a></li>");
+		$(".navigation").append(this.$userLink).append(this.$profileLink);
+	},
+	removeUserTabs: function() {
+		this.$userLink.remove();
+		this.$profileLink.remove();
+	},
 	bindLoginSuccess: function() {
 		$(window).on("loginSuccess", function() {
-			$(".logoutLink").remove();
-			$(".loginLink").parent().hide();
-			var $logoutLink = $("<li><a class='logoutLink'>Logout</a></li>");
-			$(".navigation").append($logoutLink);
-		});
+			console.log("login was triggered");
+			this.hideStartTabs();
+			this.createLoginBtn();
+			this.createUserTabs();
+		}.bind(this));
 	},
 	bindLogoutSuccess: function() {
 		$(window).on("logoutSuccess", function() {
-			$(".logoutLink").remove();
-			$(".loginLink").parent().show();
-		});
+			console.log("log out was triggered")
+			this.showStartTabs();
+			this.removeUserTabs();
+			this.removeLoginBtn();
+		}.bind(this));
+	},
+	changeActiveTab: function() {
+		var url = location.hash;
+		if(url != "") {
+			var $link = $(".navigation>li").find("a[href='" + url + "']");
+			$link.parent().addClass("active");
+			$link.parent().siblings().removeClass('active');
+		} else {
+			$(".navigation>li").removeClass('active');
+		}
 	},
 	bindActive: function() {
-		$(window).on("hashchange", function(){
-			var url = location.hash;
-			if(url != "") {
-				var $link = $(".navigation>li").find("a[href='" + url + "']");
-				$link.parent().addClass("active");
-				$link.parent().siblings().removeClass('active');
-			} else {
-				$(".navigation>li").removeClass('active');
-			}
-		});
+		$(window).on("hashchange", navigation.changeActiveTab);
+		window.addEventListener("load", navigation.changeActiveTab);
 	},
 	bindListeners: function() {
-		this.bindActive();
 		this.bindLoginSuccess();
 		this.bindLogoutSuccess();
+		this.bindActive();
 	},
 	init: function() {
+		this.getDomElements();
 		this.bindListeners();
 	}
 }

@@ -17,7 +17,7 @@ var router = {
 	    		});
 		} else {
 			$container.empty();
-			location.hash = ""
+			location.hash = "#login"
 		}
 	},
 	bindListeners: function() {
@@ -45,14 +45,22 @@ var myRoutes = {
 		},
 		access: true
 	},
-	user: {
-		html: "user.html",
+	profile: {
+		html: "profile.html",
 		controller: function() {
-			modalLogout.init();
-			$(".loginLink").parent().hide();
+			ProfileCtrl.init();
 		},
 		access: function() {
-			return AuthCtrl._isUserExists() && AuthCtrl._isRecentLogin()
+			return AuthCtrl._isUserExists() && AuthCtrl._isRecentLogin();
+		}
+	},
+	users: {
+		html: "users.html",
+		controller: function(){
+			//some code
+		},
+		access: function() {
+			return AuthCtrl._isUserExists() && AuthCtrl._isRecentLogin();
 		}
 	}
 }

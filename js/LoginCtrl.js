@@ -52,7 +52,7 @@ LoginCtrl.bindSubmit = function(options) {
 		if(Object.keys(Validator._errors).length == 0 &&
 		   this.IsEmailAndPasseword() ) {
 			  this.changeLastLogin();
-			  location.hash = "#user";
+			  location.hash = "#profile";
 			  $(window).trigger("loginSuccess");
 		}
 	}.bind(this));
