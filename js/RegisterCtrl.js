@@ -6,21 +6,36 @@ RegisterCtrl.getDomElements = function() {
 		this.$btn     = $("#registerBtn");
 };
 RegisterCtrl.saveNewUser = function() {
-	var users = JSON.parse(localStorage.users);
-	var lastUser = users[users.length - 1];
-	var lastUserID = lastUser.id;
-	var user = {
-		id: lastUserID + 1,
-		username: $("#name").val(),
-		password: $("#password").val(),
-		email: $("#email").val(),
-		token: faker.internet.password(),
-		lastLogin: Date.now()
+	if(!localStorage.users) {
+		var user = {
+			id: 0,
+			username: $("#name").val(),
+			password: $("#password").val(),
+			email: $("#email").val(),
+			token: faker.internet.password(),
+			lastLogin: Date.now()
+		}
+		var users = [user];
+		var result = JSON.stringify(users);
+		localStorage.setItem("users", result);
+		localStorage.setItem("authToken", user.token);
+	} else {
+		var users = JSON.parse(localStorage.users);
+		var lastUser = users[users.length - 1];
+		var lastUserID = lastUser.id;
+		var user = {
+			id: lastUserID + 1,
+			username: $("#name").val(),
+			password: $("#password").val(),
+			email: $("#email").val(),
+			token: faker.internet.password(),
+			lastLogin: Date.now()
+		}
+		users.push(user);
+		var result = JSON.stringify(users);
+		localStorage.setItem("users", result);
+		localStorage.setItem("authToken", user.token);
 	}
-	users.push(user);
-	var result = JSON.stringify(users);
-	localStorage.setItem("users", result);
-	localStorage.setItem("authToken", user.token);
 };
 RegisterCtrl.bindSubmit = function(options) {
 	this.$btn.on("click", function(e) {
