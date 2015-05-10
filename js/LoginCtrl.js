@@ -10,7 +10,7 @@ LoginCtrl.changeLastLogin = function() {
 		email: $("#email").val()
 	});
 	localStorage.setItem("authToken", user.info.token);
-	database.setProp({email: $("#email").val()}, {lastLogin: Date.now()});
+	database.setProp({email: $("#email").val()}, {lastLogin: moment( Date.now() ).format('DD.MM.YYYY hh:mm:ss') });
 },
 LoginCtrl.IsEmailAndPasseword = function() {
 	if(localStorage.users) {

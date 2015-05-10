@@ -9,11 +9,12 @@ var AuthCtrl = {
 		return !!this.user;
 	},
 	_isRecentLogin: function() {
-		var lastLogin = this.user.lastLogin;
-		return ( Date.now() - lastLogin ) < 86400000;
+		var lastLogin = moment(this.user.lastLogin).unix();
+		var now = moment().unix();
+		return ( now - lastLogin ) < 86400;
 	},
 	_changeUserLastLogin: function() {
-		database.setProp({id: this.user.id}, {lastLogin: Date.now()});
+		database.setProp({id: this.user.id}, { lastLogin: moment( Date.now() ).format('DD.MM.YYYY hh:mm:ss') });
 	},
 	init: function() {
 		this._setUser();
@@ -21,6 +22,8 @@ var AuthCtrl = {
 			location.hash = location.hash === "#users" ? "#users" : "#profile"
 			this._changeUserLastLogin();
 			$(window).trigger("loginSuccess");
+		} else {
+			console.log("NOT allowed")
 		}
 	}
 }

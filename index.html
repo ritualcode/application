@@ -22,9 +22,10 @@
 		</div>
 
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>        
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/bootbox/bootbox.js"></script>        
         <script src="bower_components/Faker/build/build/faker.js"></script>
-        <script src="bower_components/bootbox/bootbox.js"></script>
+        <script src="bower_components/moment/min/moment.min.js"></script>        
         <script src="js/navigation.js"></script>
         <script src="js/validation_options.js"></script>
         <script src="js/validator.js"></script>
@@ -39,22 +40,5 @@
         <script src="js/UsersCtrl.js"></script>
         <script src="js/router.js"></script>
         <script src="js/script.js"></script>
-        <script>
-            var arr = [{id:1, name:"Alex"}, {id:2, name:"John"}, {id:3, name:"Jane"}]
-            function fn(arrOfObj, obj) {
-                for(var i = 0; i < arrOfObj.length; i++) {
-                    var found;
-                    for(key in obj) {
-                        if( obj[key] !==  arrOfObj[i][key]) {
-                            found = false;
-                            break;
-                        } else {
-                            found = true;
-                        }
-                    }
-                    if (found) return arrOfObj[i];
-                }
-            } 
-        </script>
     </body>	
 </html>

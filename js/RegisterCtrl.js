@@ -11,7 +11,7 @@ RegisterCtrl.saveNewUser = function() {
 		password: $("#password").val(),
 		email: $("#email").val(),
 		token: faker.internet.password(),
-		lastLogin: Date.now()
+		lastLogin: moment().format('DD.MM.YYYY hh:mm:ss')
 	}
 	localStorage.setItem("authToken", user.token);
 	database.saveNewUser(user);

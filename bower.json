@@ -6,10 +6,11 @@
     "ritualcode <ritualcode@gmail.com>"
   ],
   "dependencies": {
-    "jquery":"latest",
-    "bootstrap":"latest",
-    "Faker":"latest",
-    "bootbox":"latest"
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "Faker": "latest",
+    "bootbox": "latest",
+    "moment": "latest"
   },
   "license": "MIT",
   "ignore": [

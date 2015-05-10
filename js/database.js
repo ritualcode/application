@@ -8,7 +8,7 @@ var database = {
 				password: faker.internet.password(10, false, RegisterValidationOptions.passwordOptions.validation.pattern.value),
 				email: faker.internet.email(),
 				token: faker.internet.password(),
-				lastLogin: Date.parse( faker.date.between("March 1, 2012", "March 1, 2015") )
+				lastLogin: moment( faker.date.between("March 1, 2012", "March 1, 2015") ).format('DD.MM.YYYY hh:mm:ss')
 			}
 			users.push(user);
 		}
