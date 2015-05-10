@@ -1,7 +1,4 @@
 var modalLogout = {
-	// getDomElements:function(){
-	// 	this.$btn = $(".logoutBtn");
-	// },
 	bindListeners: function() {
 		$(".header").on("click", ".logoutBtn", function() {
 			console.log("button was clicked");
@@ -29,7 +26,6 @@ var modalLogout = {
 		});
 	},
 	init: function(){
-		// this.getDomElements();
 		this.bindListeners();
 	}
 }

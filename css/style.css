@@ -56,4 +56,10 @@ body, h1 {
 	width: 400px;
 	margin: 30px  auto;
 }
+.usersTable {
+	margin: 30px auto;
+}
+.usersTable>thead>tr>th {
+	text-align: center;
+}
 

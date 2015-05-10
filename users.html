@@ -1,1 +1,27 @@
 <h1>Users</h1>
+
+<table class="usersTable table table-striped">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>E-mail</th>
+			<th>Last login</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<script id="usersTmpl" type="template">		
+			<tr>
+				<td>{{id}}</td>
+				<td>{{username}}</td>
+				<td>{{email}}</td>
+				<td>{{lastLogin}}</td>
+				<td>
+					<button class="btn-edit btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="glyphicon glyphicon-edit"></span></button>
+					<button class="btn-delete btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Remove"><span class="glyphicon glyphicon-remove"></span></button>
+				</td>
+			</tr>
+		</script>
+	</tbody>
+</table>

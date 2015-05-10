@@ -30,7 +30,6 @@ var navigation = {
 	},
 	bindLoginSuccess: function() {
 		$(window).on("loginSuccess", function() {
-			console.log("login was triggered");
 			this.hideStartTabs();
 			this.createLoginBtn();
 			this.createUserTabs();
@@ -38,7 +37,6 @@ var navigation = {
 	},
 	bindLogoutSuccess: function() {
 		$(window).on("logoutSuccess", function() {
-			console.log("log out was triggered")
 			this.showStartTabs();
 			this.removeUserTabs();
 			this.removeLoginBtn();

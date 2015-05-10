@@ -1,41 +1,24 @@
 var AuthCtrl = {
-	user: {},
-	_getAuthToken: function() {
-		return !!localStorage.authToken ? localStorage.authToken : false;
+	user: null,
+	_setUser: function() {
+		var authToken = database.getItem("authToken");
+		var user = database.getUser({token: authToken});
+		this.user = user ? user.info : null
 	},
 	_isUserExists: function() {
-		var authToken = this._getAuthToken();
-		if (authToken) {
-			var users = JSON.parse(localStorage.users);
-			for(var i = 0; i < users.length; i++) {
-				if( users[i].token == authToken ) {
-					this.user = users[i]; 
-					return true;
-				} else {
-					continue;
-				}
-			}
-		} else {
-			return false;
-		}
+		return !!this.user;
 	},
 	_isRecentLogin: function() {
 		var lastLogin = this.user.lastLogin;
 		return ( Date.now() - lastLogin ) < 86400000;
 	},
 	_changeUserLastLogin: function() {
-		var users = JSON.parse(localStorage.users);
-		for(var i = 0; i < users.length; i++) {
-			if(users[i].id == this.user.id) {
-				users[i].lastLogin = Date.now();
-			}
-		}
-		var result = JSON.stringify(users);
-		localStorage.setItem("users", result);
+		database.setProp({id: this.user.id}, {lastLogin: Date.now()});
 	},
 	init: function() {
+		this._setUser();
 		if ( this._isUserExists() && this._isRecentLogin() ) {
-			location.hash = "#profile";
+			location.hash = location.hash === "#users" ? "#users" : "#profile"
 			this._changeUserLastLogin();
 			$(window).trigger("loginSuccess");
 		}

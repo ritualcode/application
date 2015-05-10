@@ -6,33 +6,26 @@ LoginCtrl.getDomElements = function() {
 	this.$btn     = $("#loginBtn");
 };
 LoginCtrl.changeLastLogin = function() {
-	var users = JSON.parse(localStorage.users);
-	for(var i = 0; i < users.length; i++) {
-		if(users[i].email == $("#email").val()) {
-			users[i].lastLogin = Date.now();
-			localStorage.setItem("authToken", users[i].token);
-		}
-	}
-	var result = JSON.stringify(users);
-	localStorage.setItem("users", result);
+	var user = database.getUser({
+		email: $("#email").val()
+	});
+	localStorage.setItem("authToken", user.info.token);
+	database.setProp({email: $("#email").val()}, {lastLogin: Date.now()});
 },
 LoginCtrl.IsEmailAndPasseword = function() {
 	if(localStorage.users) {
-		var users = JSON.parse(localStorage.users);
-		for(var i = 0; i < users.length; i++) {
-			if(users[i].email == $("#email").val() &&
-			   users[i].password == $("#password").val() ) {
-			   return true
-			} else {
-				continue
-			}
+		var user = database.getUser({
+			email: $("#email").val(), 
+			password: $("#password").val() 
+		});
+		if(user) {
+			return true;
+		} else {
+			$(".password-message").text("Invalid e-mail of password");
 		}
-		$(".password-message").text("Invalid e-mail of password");
-		return false;
 	} else {
 		$(".password-message").text("User is not found");
 	}
-
 },
 LoginCtrl.bindSubmit = function(options) {
 	this.$btn.on("click", function(e) {

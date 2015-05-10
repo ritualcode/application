@@ -51,15 +51,17 @@ var myRoutes = {
 			ProfileCtrl.init();
 		},
 		access: function() {
+			AuthCtrl._setUser();
 			return AuthCtrl._isUserExists() && AuthCtrl._isRecentLogin();
 		}
 	},
 	users: {
 		html: "users.html",
 		controller: function(){
-			//some code
+			UsersCtrl.init();
 		},
 		access: function() {
+			AuthCtrl._setUser();
 			return AuthCtrl._isUserExists() && AuthCtrl._isRecentLogin();
 		}
 	}
