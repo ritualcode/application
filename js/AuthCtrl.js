@@ -9,7 +9,7 @@ var AuthCtrl = {
 		return !!this.user;
 	},
 	_isRecentLogin: function() {
-		var lastLogin = moment(this.user.lastLogin).unix();
+		var lastLogin = moment(this.user.lastLogin, "DD.MM.YYYY hh:mm:ss").unix();
 		var now = moment().unix();
 		return ( now - lastLogin ) < 86400;
 	},
