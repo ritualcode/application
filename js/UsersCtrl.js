@@ -13,9 +13,64 @@ UsersCtrl._fillTemplate = function() {
 		$('.usersTable>tbody').append(usersTmpl);
 	}
 };
+UsersCtrl.showDeleteUserModal = function(btn) {
+	bootbox.confirm("Are you sure you want to delete this user?", function() {
+		var $parent = btn.closest("tr");
+		var userId = +$parent.find("td:first").text();
+		database.deleteUser({id: userId});
+		$parent.remove();
+	}); 
+};
+
+UsersCtrl.editUser = function(tr){
+	var $collection = tr.find(".usernameCell, .emailCell");
+	$collection.each(function(i, elem) {
+		var text = $.trim( $(elem).text() );
+		var input = $("<input class='form-control' type='text' value='" + text + "' />")
+		$(elem).empty().prepend(input);
+	});
+};
+UsersCtrl.saveUsersEdition = function(tr) {
+	var $collection = tr.find(".usernameCell, .emailCell");
+	$collection.each(function(i, elem) {
+		var text = $.trim( $(elem).find("input").val() );
+		$(elem).empty().prepend(text);
+		var userId = +tr.find("td:first").text();
+		var propToChange = elem.className.slice(0, -4);
+		var obj = {}
+		obj[propToChange] = text;
+		database.setProp({id: userId}, obj)
+	});
+}
+UsersCtrl.bindEditUser = function() {
+	$(".btn-edit").on("click", function() {
+		UsersCtrl.editUser( $(this).closest("tr") );
+		$(this).hide();
+		$(this).siblings(".btn-saveEdit").show();
+	});
+};
+UsersCtrl.bindSaveUsersEdition = function() {
+	$(".btn-saveEdit").on("click", function() {
+		UsersCtrl.saveUsersEdition( $(this).closest("tr") );
+		$(this).hide();
+		$(this).siblings(".btn-edit").show();
+	});
+}
+UsersCtrl.bindDeleteUser = function() {
+	$(".btn-delete").on("click", function() {
+		UsersCtrl.showDeleteUserModal( $(this) );
+	});
+};
+
+UsersCtrl.bindListeners = function() {
+	this.bindDeleteUser();
+	this.bindEditUser();
+	this.bindSaveUsersEdition();
+};
 
 UsersCtrl.init = function() {
 	this._setUsers();
 	this._fillTemplate();
-	$('[data-toggle="tooltip"]').tooltip()
-}
+	$('[data-toggle="tooltip"]').tooltip();
+	this.bindListeners();
+};

@@ -22,8 +22,6 @@ var AuthCtrl = {
 			location.hash = location.hash === "#users" ? "#users" : "#profile"
 			this._changeUserLastLogin();
 			$(window).trigger("loginSuccess");
-		} else {
-			console.log("NOT allowed")
 		}
 	}
 }

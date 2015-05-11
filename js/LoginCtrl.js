@@ -21,7 +21,7 @@ LoginCtrl.IsEmailAndPasseword = function() {
 		if(user) {
 			return true;
 		} else {
-			$(".password-message").text("Invalid e-mail of password");
+			$(".password-message").text("Invalid e-mail or password");
 		}
 	} else {
 		$(".password-message").text("User is not found");

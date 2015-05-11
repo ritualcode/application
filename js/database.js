@@ -39,6 +39,13 @@ var database = {
 			}
 		}
 	},
+	deleteUser: function(objForSearch) {
+		var users = JSON.parse(localStorage.users);
+		var user = this.getUser(objForSearch);
+		users.splice(user.index, user.index+1);
+		var str = JSON.stringify(users);
+		localStorage.setItem("users", str);
+	},
 	setProp: function(objForSearch, objForSet) {
 		if(localStorage.users) {
 			var users = JSON.parse(localStorage.users);

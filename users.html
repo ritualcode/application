@@ -13,12 +13,21 @@
 	<tbody>
 		<script id="usersTmpl" type="template">		
 			<tr>
-				<td>{{id}}</td>
-				<td>{{username}}</td>
-				<td>{{email}}</td>
-				<td>{{lastLogin}}</td>
+				<td>
+					{{id}}
+				</td>
+				<td class="usernameCell">
+					{{username}}
+				</td>
+				<td class="emailCell">
+					{{email}}
+				</td>
+				<td>
+					{{lastLogin}}
+				</td>
 				<td>
 					<button class="btn-edit btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="glyphicon glyphicon-edit"></span></button>
+					<button class="btn-saveEdit btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Save changes" style="display:none;"><span class="glyphicon glyphicon-floppy-save"></span></button>
 					<button class="btn-delete btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Remove"><span class="glyphicon glyphicon-remove"></span></button>
 				</td>
 			</tr>
