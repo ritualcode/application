@@ -41,7 +41,7 @@ var myRoutes = {
 	login: {
 		html: "login.html",
 		controller: function() {
-			LoginCtrl.init(RegisterValidationOptions);
+			LoginCtrl.init(LoginValidationOptions);
 		},
 		access: true
 	},
@@ -58,7 +58,7 @@ var myRoutes = {
 	"edit-profile": {
 		html: "edit_profile.html",
 		controller: function() {
-			EditProfileCtrl.init(EditProfileValidationOptions);
+			EditProfileCtrl.init(RegisterValidationOptions);
 		},
 		access: function() {
 			AuthCtrl._setUser();

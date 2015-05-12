@@ -62,7 +62,7 @@ var database = {
 	},
 	saveNewUser: function(userObj) {
 		var users = localStorage.users ? JSON.parse(localStorage.users) : [];
-		var lastUserID = users.length - 1 || 0;
+		var lastUserID = users[users.length-1].id || 0;
 		user = {
 			id: lastUserID + 1
 		}
