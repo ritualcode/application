@@ -42,13 +42,16 @@ body, h1 {
 }
 
 /*forms*/
-#registerForm, #loginForm {
+#registerForm, #loginForm, #editProfile, #addNewUserForm {
 	width: 200px;
 	margin: 0  auto;
 	text-align: center;
 }
 .form-group {
 	text-align: left;
+}
+#editProfile, #addNewUserForm {
+	margin-top: 30px;
 }
 
 /*Tables*/
@@ -61,5 +64,15 @@ body, h1 {
 }
 .usersTable>thead>tr>th {
 	text-align: center;
+}
+.profileTable>thead>tr>th {
+	text-align: right;
+}
+.profileTable .form-control {
+	display: inline-block;
+	width: auto;
+}
+.profileTable tbody button {
+	margin-left: 5px;
 }
 

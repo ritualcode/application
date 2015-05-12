@@ -1,6 +1,6 @@
 var ProfileCtrl = Object.create(TableCtrl);
 
-ProfileCtrl._user = null;
+ProfileCtrl.user = null;
 
 ProfileCtrl._setUser = function() {
 	var authToken = database.getItem("authToken");
@@ -10,7 +10,7 @@ ProfileCtrl._setUser = function() {
 
 ProfileCtrl._fillTemplate = function() {
 	var profileTmpl = this.applyTemplate("profileTmpl", this.user);
-	$('.profileTable').html(profileTmpl);	
+	$('.profileTable>tbody').html(profileTmpl);	
 };
 
 ProfileCtrl.init = function(){

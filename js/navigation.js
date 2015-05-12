@@ -22,11 +22,13 @@ var navigation = {
 	createUserTabs: function() {
 		this.$userLink = $("<li><a href='#profile' class='profileLink'>Profile</a></li>");
 		this.$profileLink = $("<li><a href='#users' class='usersLink'>Users</a></li>");
-		$(".navigation").append(this.$userLink).append(this.$profileLink);
+		this.$addUserLink = $("<li><a href='#add-user' class='usersLink'>New <small><span class='glyphicon glyphicon-plus'></span></small></a></li>");
+		$(".navigation").append(this.$userLink, this.$profileLink, this.$addUserLink);
 	},
 	removeUserTabs: function() {
 		this.$userLink.remove();
 		this.$profileLink.remove();
+		this.$addUserLink.remove();
 	},
 	bindLoginSuccess: function() {
 		$(window).on("loginSuccess", function() {

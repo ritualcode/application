@@ -14,12 +14,28 @@ UsersCtrl._fillTemplate = function() {
 	}
 };
 UsersCtrl.showDeleteUserModal = function(btn) {
-	bootbox.confirm("Are you sure you want to delete this user?", function() {
-		var $parent = btn.closest("tr");
-		var userId = +$parent.find("td:first").text();
-		database.deleteUser({id: userId});
-		$parent.remove();
-	}); 
+	bootbox.dialog({
+	  message: "Are you sure you want to delete this user?",
+	  title: "Deleting User",
+	  buttons: {
+	    success: {
+	      label: "Yes",
+	      className: "btn-success",
+	      callback: function() {
+	        var $parent = btn.closest("tr");
+			var userId = +$parent.find("td:first").text();
+			database.deleteUser({id: userId});
+			$parent.remove();
+	      }
+	    },
+	    danger: {
+	      label: "No",
+	      className: "btn-danger",
+	      callback: function() {
+	      }
+	    }
+	  }
+	});
 };
 
 UsersCtrl.editUser = function(tr){
@@ -55,7 +71,7 @@ UsersCtrl.bindSaveUsersEdition = function() {
 		$(this).hide();
 		$(this).siblings(".btn-edit").show();
 	});
-}
+};
 UsersCtrl.bindDeleteUser = function() {
 	$(".btn-delete").on("click", function() {
 		UsersCtrl.showDeleteUserModal( $(this) );

@@ -1,5 +1,5 @@
 var RegisterValidationOptions = {
-	nameOptions: {
+	usernameOptions: {
 		validation: {
 			required: {
 				value   : true,
@@ -158,3 +158,7 @@ var LoginValidationOptions = {
 	}
 
 }
+
+// var EditProfileValidationOptions = RegisterValidationOptions;
+// EditProfileValidationOptions.passwordOptions.validation.required.value = false;
+// EditProfileValidationOptions.confirmPasswordOptions.validation.required.value = !!$("#password").val();

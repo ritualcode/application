@@ -41,7 +41,7 @@ var myRoutes = {
 	login: {
 		html: "login.html",
 		controller: function() {
-			LoginCtrl.init(LoginValidationOptions);
+			LoginCtrl.init(RegisterValidationOptions);
 		},
 		access: true
 	},
@@ -49,6 +49,26 @@ var myRoutes = {
 		html: "profile.html",
 		controller: function() {
 			ProfileCtrl.init();
+		},
+		access: function() {
+			AuthCtrl._setUser();
+			return AuthCtrl._isUserExists() && AuthCtrl._isRecentLogin();
+		}
+	},
+	"edit-profile": {
+		html: "edit_profile.html",
+		controller: function() {
+			EditProfileCtrl.init(EditProfileValidationOptions);
+		},
+		access: function() {
+			AuthCtrl._setUser();
+			return AuthCtrl._isUserExists() && AuthCtrl._isRecentLogin();
+		}
+	},
+	"add-user": {
+		html: "add_user.html",
+		controller: function() {
+			AddUserCtrl.init(RegisterValidationOptions);
 		},
 		access: function() {
 			AuthCtrl._setUser();

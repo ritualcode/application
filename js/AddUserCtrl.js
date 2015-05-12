@@ -1,11 +1,11 @@
-﻿var RegisterCtrl = Object.create(InputCtrl);
+var AddUserCtrl = Object.create(InputCtrl);
 
-RegisterCtrl.getDomElements = function() {
-		this.$form    = $("#registerForm");
-		this.$inputs  = $("#registerForm input");
-		this.$btn     = $("#registerBtn");
+AddUserCtrl.getDomElements = function() {
+	this.$form   = $("#addNewUserForm");
+	this.$inputs  = $("#addNewUserForm input");
+	this.$btn    = $("#addNewUserBtn");
 };
-RegisterCtrl.saveNewUser = function() {
+AddUserCtrl.saveNewUser = function() {
 	var user = {
 		username: $("#username").val(),
 		password: $("#password").val(),
@@ -13,10 +13,11 @@ RegisterCtrl.saveNewUser = function() {
 		token: faker.internet.password(),
 		lastLogin: moment().format('DD.MM.YYYY hh:mm:ss')
 	}
-	localStorage.setItem("authToken", user.token);
 	database.saveNewUser(user);
+	bootbox.alert("User was saved");
+	$(window).trigger("hashchange");
 };
-RegisterCtrl.bindSubmit = function(options) {
+AddUserCtrl.bindSubmit = function(options) {
 	this.$btn.on("click", function(e) {
 		e.preventDefault();
 		this.$form.trigger("submit");
@@ -33,8 +34,6 @@ RegisterCtrl.bindSubmit = function(options) {
 		
 		if(Object.keys(Validator._errors).length == 0) {
 			this.saveNewUser();
-			location.hash = "#profile";
-			$(window).trigger("loginSuccess");
 		}
 	}.bind(this));
 };

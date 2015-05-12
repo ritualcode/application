@@ -1,4 +1,5 @@
-<form id="registerForm" no-validate = "">
+<h1>Edit Profile</h1>
+<form id="editProfile" no-validate = "">
 	<div class="form-group username-group has-feedback">
 		<label for="username">Name</label>
 		<input type="text" id="username" class="form-control" placeholder="Name">
@@ -17,11 +18,12 @@
 		<span class="password-icon glyphicon form-control-feedback"></span>
 		<span class="password-message"></span>
 	</div>
-	<div class="form-group confirm-password-group has-feedback">
+	<div class="form-group confirm-password-group has-feedback" style="dispay:none">
 		<label for="password">Confirm password</label>
 		<input type="password" id="confirm-password" class="form-control" placeholder="Confirm password">
 		<span class="confirm-password-icon glyphicon form-control-feedback"></span>
 		<span class="confirm-password-message"></span>
 	</div>
-	<a id="registerBtn" class="btn btn-primary btn-lg">Register</a>
+	<a id="editProfileBtn" class="btn btn-success btn-lg">Save</a>
+	<a id="editProfileCancelBtn" class="btn btn-danger btn-lg">Cancel</a>
 </form>

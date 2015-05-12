@@ -9,9 +9,11 @@ var AuthCtrl = {
 		return !!this.user;
 	},
 	_isRecentLogin: function() {
-		var lastLogin = moment(this.user.lastLogin, "DD.MM.YYYY hh:mm:ss").unix();
-		var now = moment().unix();
-		return ( now - lastLogin ) < 86400;
+		if(this.user) {
+			var lastLogin = moment(this.user.lastLogin, "DD.MM.YYYY hh:mm:ss");
+			var now = moment(new Date(), "DD.MM.YYYY hh:mm:ss");
+			return now.diff(lastLogin, "days") < 1;
+		}
 	},
 	_changeUserLastLogin: function() {
 		database.setProp({id: this.user.id}, { lastLogin: moment( Date.now() ).format('DD.MM.YYYY hh:mm:ss') });
